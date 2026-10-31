@@ -35,6 +35,14 @@ cmake --build --preset debug
 ctest --preset debug
 ```
 
+## Releases and continuous integration
+
+GitHub Actions checks formatting and runs the Debug and Release test suites on
+Linux and macOS for pushes and pull requests. Pushing a version tag such as
+`v0.1.0` runs the Release build and tests on both platforms, then publishes the
+installed artifacts as `.tar.gz` downloads on that tag's GitHub Release page.
+Archive names include the runner-reported operating system and architecture.
+
 ## Embedded-library mode
 
 The installed public header is only `<tavern/database.hpp>`.
