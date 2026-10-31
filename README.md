@@ -45,13 +45,10 @@ Archive names include the runner-reported operating system and architecture.
 
 ## Support Tavern
 
-Donations are accepted as native BNB on BNB Smart Chain Mainnet (chain ID 56).
-Verify the receiving address and network before sending funds:
+[![Donate native BNB](https://img.shields.io/badge/Donate-native%20BNB-f0b90b?style=for-the-badge)](docs/donate.md)
 
-[`0xcF69E336cE485d691f07421126B80552d3C6AE6b` on BscScan](https://bscscan.com/address/0xcF69E336cE485d691f07421126B80552d3C6AE6b)
-
-Only native BNB is accepted. Transfers are irreversible and donations are not
-tax-deductible.
+See the [donation guide](docs/donate.md) for supported-network and transfer
+safety information.
 
 ## Embedded-library mode
 
