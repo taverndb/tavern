@@ -1,0 +1,4 @@
+# GitHub Sponsors does not support direct BNB Smart Chain payouts. This custom
+# funding link lets contributors verify the public receiving address on BscScan.
+custom:
+  - https://bscscan.com/address/0xcF69E336cE485d691f07421126B80552d3C6AE6b
