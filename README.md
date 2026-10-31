@@ -1,5 +1,7 @@
 # Tavern 0.1.0
 
+[![Donate native BNB](https://img.shields.io/badge/Donate-native%20BNB-f0b90b?style=for-the-badge)](docs/donate.md)
+
 Tavern is a durable C++23 relationship graph database. It supports an embedded
 library mode and a standalone TCP server mode, with directed `FOLLOW`
 relationships and symmetric `FRIEND` relationships.
@@ -37,18 +39,11 @@ ctest --preset debug
 
 ## Releases and continuous integration
 
-GitHub Actions checks formatting and runs the Debug and Release test suites on
-Linux and macOS for pushes and pull requests. Pushing a version tag such as
-`v0.1.0` runs the Release build and tests on both platforms, then publishes the
-installed artifacts as `.tar.gz` downloads on that tag's GitHub Release page.
-Archive names include the runner-reported operating system and architecture.
-
-## Support Tavern
-
-[![Donate native BNB](https://img.shields.io/badge/Donate-native%20BNB-f0b90b?style=for-the-badge)](docs/donate.md)
-
-See the [donation guide](docs/donate.md) for supported-network and transfer
-safety information.
+GitHub Actions runs the Debug and Release test suites on Linux and macOS for
+pushes and pull requests. Pushing a version tag such as `v0.1.0` runs the
+Release build and tests on both platforms, then publishes the installed
+artifacts as `.tar.gz` downloads on that tag's GitHub Release page. Archive
+names include the runner-reported operating system and architecture.
 
 ## Embedded-library mode
 
@@ -205,3 +200,7 @@ not guarantee migration, downgrade, source, or binary compatibility across
 releases. Unsupported or corrupt format metadata is rejected on open. Back up
 database files before upgrading Tavern. v0.1.0 has no automatic migration or
 repair utility.
+
+## License
+
+Tavern is distributed under the [MIT License](LICENSE).

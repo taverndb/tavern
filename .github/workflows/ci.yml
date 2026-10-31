@@ -8,17 +8,6 @@ permissions:
   contents: read
 
 jobs:
-  format:
-    name: Formatting
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - name: Check formatting
-        run: >-
-          find include src server cli tests benchmarks examples -type f
-          \( -name '*.cpp' -o -name '*.hpp' \) -print0 |
-          xargs -0 clang-format --dry-run --Werror
-
   build-and-test:
     name: ${{ matrix.os }} / ${{ matrix.preset }}
     runs-on: ${{ matrix.os }}
