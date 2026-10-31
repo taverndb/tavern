@@ -1,0 +1,50 @@
+# CMake build trees and generated project metadata
+/build*/
+/cmake-build-*/
+/out/build/
+CMakeUserPresets.json
+CMakeCache.txt
+CMakeFiles/
+CTestTestfile.cmake
+cmake_install.cmake
+install_manifest.txt
+compile_commands.json
+Makefile
+/Testing/
+
+# Compiled and linker outputs
+*.o
+*.obj
+*.a
+*.so
+*.dylib
+*.dll
+*.exe
+*.pdb
+*.dSYM/
+
+# Test, benchmark, coverage, and sanitizer outputs
+/tavern-*.db
+/tavern-*.journal
+/tavern-*.sock
+/tavern-*.socket
+*.gcda
+*.gcno
+*.profraw
+*.profdata
+*.sancov
+/coverage/
+/coverage-html/
+
+# Local tool and editor state
+/.clangd
+/.cache/
+/.idea/
+/.vscode/
+*.swp
+*.swo
+*~
+
+# Filesystem metadata
+.DS_Store
+._*
