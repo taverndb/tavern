@@ -1,0 +1,74 @@
+name: Release
+
+on:
+  push:
+    tags: ['v*']
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: Existing version tag to package and publish
+        required: true
+        type: string
+
+env:
+  RELEASE_TAG: ${{ inputs.tag || github.ref_name }}
+
+permissions:
+  contents: write
+
+jobs:
+  package:
+    name: Package ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, ubuntu-24.04-arm, macos-latest]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.tag || github.ref }}
+      - name: Configure
+        run: cmake --preset release
+      - name: Build
+        run: cmake --build --preset release --parallel
+      - name: Test
+        run: ctest --preset release
+      - name: Install
+        run: cmake --install build/release --prefix stage
+      - name: Create archive
+        shell: bash
+        run: |
+          mkdir dist
+          platform="$(uname -s | tr '[:upper:]' '[:lower:]')"
+          archive="dist/tavern-${RELEASE_TAG}-${platform}-$(uname -m).tar.gz"
+          tar -C stage -czf "$archive" .
+      - name: Upload archive
+        uses: actions/upload-artifact@v4
+        with:
+          name: tavern-${{ matrix.os }}
+          path: dist/*.tar.gz
+          if-no-files-found: error
+
+  publish:
+    name: Publish GitHub release
+    needs: package
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download archives
+        uses: actions/download-artifact@v4
+        with:
+          path: release-assets
+          merge-multiple: true
+      - name: Create release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if gh release view "$RELEASE_TAG" --repo "$GITHUB_REPOSITORY" \
+              >/dev/null 2>&1; then
+            gh release upload "$RELEASE_TAG" release-assets/*.tar.gz \
+              --repo "$GITHUB_REPOSITORY" --clobber
+          else
+            gh release create "$RELEASE_TAG" release-assets/*.tar.gz \
+              --repo "$GITHUB_REPOSITORY" --generate-notes
+          fi

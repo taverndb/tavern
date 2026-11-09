@@ -1,0 +1,55 @@
+---
+# Favor findings with correctness, safety, portability, or measurable runtime
+# consequences. Formatting remains the responsibility of clang-format.
+Checks: >
+  -*,
+  clang-analyzer-*,
+  bugprone-*,
+  performance-*,
+  portability-*,
+  readability-avoid-const-params-in-decls,
+  readability-container-size-empty,
+  readability-else-after-return,
+  readability-misleading-indentation,
+  readability-redundant-control-flow,
+  readability-redundant-member-init,
+  readability-simplify-boolean-expr,
+  readability-static-accessed-through-instance,
+  readability-string-compare,
+  modernize-avoid-bind,
+  modernize-deprecated-headers,
+  modernize-loop-convert,
+  modernize-make-shared,
+  modernize-make-unique,
+  modernize-redundant-void-arg,
+  modernize-replace-auto-ptr,
+  modernize-shrink-to-fit,
+  modernize-use-bool-literals,
+  modernize-use-default-member-init,
+  modernize-use-emplace,
+  modernize-use-equals-default,
+  modernize-use-equals-delete,
+  modernize-use-noexcept,
+  modernize-use-nullptr,
+  modernize-use-override,
+  modernize-use-trailing-return-type,
+  modernize-use-using,
+  -bugprone-easily-swappable-parameters,
+  -bugprone-exception-escape,
+  -bugprone-misplaced-widening-cast,
+  -bugprone-random-generator-seed,
+  -bugprone-signed-bitwise,
+  -bugprone-unchecked-optional-access,
+  -bugprone-unchecked-string-to-number-conversion,
+  -bugprone-unused-return-value,
+  -clang-analyzer-optin.taint.GenericTaint,
+  -clang-analyzer-security.ArrayBound,
+  -performance-enum-size,
+  -portability-avoid-pragma-once,
+  -readability-simplify-boolean-expr
+
+# Deliberately omit broad naming and magic-number rules. The disabled checks
+# above either flag intentional test cleanup and deterministic fixtures, require
+# API or representation changes, or produce platform-library false positives.
+HeaderFilterRegex: '^(include|src|server|cli)/'
+FormatStyle: file
